@@ -37,8 +37,8 @@ ENV PATH /root/.bun/bin:$PATH
 # アプリケーションのコピー
 COPY . /app
 
-# ポート3000を公開
-EXPOSE 3000
+# ポート4000を公開
+EXPOSE 4000
 
 # Railsサーバーを起動
 CMD ["rails", "server", "-b", "0.0.0.0"]
