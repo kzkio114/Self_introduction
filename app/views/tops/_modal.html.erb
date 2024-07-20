@@ -1,0 +1,16 @@
+<div class="modal is-active" id="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">モーダルのタイトル</p>
+      <%= button_to '×', close_modal_tops_path, method: :post, form: { data: { turbo: true } }, class: 'delete' %>
+    </header>
+    <section class="modal-card-body">
+      モーダルの中身
+    </section>
+    <footer class="modal-card-foot">
+      <%= button_to 'Save changes', close_modal_tops_path, method: :post, form: { data: { turbo: true } }, class: 'button is-success' %>
+      <%= button_to 'Cancel', close_modal_tops_path, method: :post, form: { data: { turbo: true } }, class: 'button' %>
+    </footer>
+  </div>
+</div>

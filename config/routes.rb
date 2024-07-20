@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+ root "tops#index"
+ 
+ post 'tops/my_show', as: 'tops_my_show'
+ get 'tops/my_show', as: 'tops_my_get'
+
+ resources :tops, only: [:index, :create] do
+  collection do
+    post :close_modal
+    post :my_show
+  end
+end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
