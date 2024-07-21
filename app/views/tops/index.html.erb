@@ -1,18 +1,32 @@
-<h1>文字を一文字ずつ表示</h1>
+<div class="columns is-centered">
+  <div class="column is-half">
+    <div class="column is-flex is-justify-content-center">
+      <%= button_to '押すと、ここから下が消えます', show_button_tops_path, method: :post, remote: true, class: 'button is-primary' %>
+    </div>
 
-<div id="tops">
-  <%= render partial: "tops/my_name", locals: { current_text: @current_text } %>
+    <div id="show">
+    </div>
+
+    <h1 class="title has-text-centered">文字を一文字ずつ表示</h1>
+    <div id="tops">
+      <%= render partial: "tops/my_name", locals: { current_text: @current_text } %>
+    </div>
+
+    <div id="button" class="column is-flex is-justify-content-center">
+      <%= button_to '次の文字を表示', my_show_tops_path, method: :post, remote: true, data: { turbo_frame: '_top' }, id: 'my_show_button', class: 'button is-link' %>
+    </div>
+
+    <div id='modal-container'></div>
+    <div id='message'></div>
+
+    <div class="column is-flex is-justify-content-center">
+      <%= form_with url: tops_path, data: { turbo: true } do |f| %>
+        <%= f.submit '送信', class: 'button is-success' %>
+      <% end %>
+    </div>
+
+    <div class="column is-flex is-justify-content-center">
+      <%= link_to 'ルートページに戻る', root_path, class: 'button is-info' %>
+    </div>
+  </div>
 </div>
-
-<div id="button">
-  <%= button_to '次の文字を表示', my_show_tops_path, method: :post, remote: true, data: { turbo_frame: '_top' }, id: 'my_show_button' %>
-  <%= link_to 'ルートページに戻る', root_path, class: 'button' %>
-</div>
-
-
-<div id='modal-container'></div>
-<div id='message'></div>
-
-<%= form_with url: tops_path, data: { turbo: true } do |f| %>
-  <%= f.submit '送信' %>
-<% end %>

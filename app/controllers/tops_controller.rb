@@ -4,6 +4,12 @@ class TopsController < ApplicationController
     @full_text = "これは一文字ずつ表示されるテキストです。"
   end
 
+  def show_button
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.replace('show', partial: 'tops/show_button') }
+    end
+  end
+
   def create
     respond_to do |format|
       format.turbo_stream do
@@ -20,17 +26,17 @@ class TopsController < ApplicationController
     end
   end
 
-
-
-
   def my_show
     session[:current_text] ||= ""
     full_text = "これは一文字ずつ表示されるテキストです。"
-
+  
     if session[:current_text].length < full_text.length
       session[:current_text] += full_text[session[:current_text].length]
+    else
+      # Reset session[:current_text] when all characters of full_text have been displayed
+      session.delete(:current_text)
     end
-
+  
     respond_to do |format|
       format.turbo_stream {
         render turbo_stream: [
