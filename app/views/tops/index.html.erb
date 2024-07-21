@@ -4,12 +4,11 @@
       <%= button_to '押すと、ここから下が消えます', show_button_tops_path, method: :post, remote: true, class: 'button is-primary' %>
     </div>
 
-    <div id="show">
-    </div>
-
     <h1 class="title has-text-centered">文字を一文字ずつ表示</h1>
     <div id="tops">
+     <div id="show">
       <%= render partial: "tops/my_name", locals: { current_text: @current_text } %>
+    </div>
     </div>
 
     <div id="button" class="column is-flex is-justify-content-center">
@@ -25,8 +24,7 @@
       <% end %>
     </div>
 
-    <div class="column is-flex is-justify-content-center">
-      <%= link_to 'ルートページに戻る', root_path, class: 'button is-info' %>
-    </div>
+    <%= link_to 'ルートページに戻る', root_path, class: 'button is-info' %>
   </div>
 </div>
+
