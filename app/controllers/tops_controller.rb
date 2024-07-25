@@ -13,9 +13,10 @@ class TopsController < ApplicationController
   def create
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream:
-          turbo_stream.append('modal-container', partial: 'tops/modal') +
+        render turbo_stream: [
+          turbo_stream.append('modal-container', partial: 'tops/modal'),
           turbo_stream.update('message', partial: 'tops/message', locals: { message: "フォームが送信されました！" })
+        ]
       end
     end
   end
@@ -33,15 +34,12 @@ class TopsController < ApplicationController
     if session[:current_text].length < full_text.length
       session[:current_text] += full_text[session[:current_text].length]
     else
-      # Reset session[:current_text] when all characters of full_text have been displayed
       session.delete(:current_text)
     end
   
     respond_to do |format|
       format.turbo_stream {
-        render turbo_stream: [
-          turbo_stream.replace("tops", partial: "tops/my_name", locals: { current_text: session[:current_text] })
-        ]
+        render turbo_stream: turbo_stream.replace("tops", partial: "tops/my_name", locals: { current_text: session[:current_text] })
       }
     end
   end

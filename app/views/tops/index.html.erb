@@ -1,8 +1,16 @@
+<div class="bg">
 <div class="columns is-centered">
   <div class="column is-half">
+  
     <div class="column is-flex is-justify-content-center">
       <%= button_to '押すと、ここから下が消えます', show_button_tops_path, method: :post, remote: true, class: 'button is-primary' %>
     </div>
+    <span class="title">
+      <span>テスト</span>
+      <span>テスト</span>
+    </span>
+
+
 
     <h1 class="title has-text-centered">表示が出来ない？？</h1>
     <div id="tops">
@@ -26,5 +34,6 @@
     <div class="column is-flex is-justify-content-center">
     <%= link_to 'ルートに戻る', root_path, class: 'button is-info' %>
   </div>
+  
 </div>
-
+</div>
