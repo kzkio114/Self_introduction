@@ -12,3 +12,6 @@ application.register("hello", HelloController)
 
 import LayoutsController from "./layouts_controller"
 application.register("layouts", LayoutsController)
+
+import ModalController from "./modal_controller"
+application.register("modal", ModalController)

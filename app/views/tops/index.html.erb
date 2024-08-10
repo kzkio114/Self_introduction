@@ -5,16 +5,9 @@
         <%= button_to '押すと、ここから下が消えます', show_button_tops_path, method: :post, remote: true, class: 'button is-primary' %>
       </div>
       <span class="title">
-        <span></span>
-        <span>自己紹介アプリ</span>
+        <span>ようこそ、自己紹介アプリに</span>
+        <span>kzkio(かずちゃん)</span>
       </span>
-
-      <h1 class="title has-text-centered">表示が出来ない？？</h1>
-      <div id="tops">
-        <div id="show">
-          <%= render partial: "tops/my_name", locals: { current_text: @current_text } %>
-        </div>
-      </div>
 
     <div data-controller="anime">
       <div data-anime-target="animeBg" class="block">
@@ -25,14 +18,7 @@
       <div id="button" class="column is-flex is-justify-content-center">
         <%= button_to '次の文字を表示', my_show_tops_path, method: :post, remote: true, data: { turbo_frame: '_top' }, id: 'my_show_button', class: 'button is-link' %>
       </div>
-
-      <div id='modal-container'></div>
-      <div id='message'></div>
-
-      <div class="column is-flex is-justify-content-center">
-        <%= form_with url: tops_path, data: { turbo: true } do |f| %>
-          <%= f.submit '送信', class: 'button is-success' %>
-        <% end %>
+      <%= render "modal" %>
       </div>
     </div>
   </div>

@@ -1,16 +1,22 @@
-<div class="modal is-active" id="modal">
-  <div class="modal-background"></div>
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">モーダルのタイトル</p>
-      <%= button_to '×', close_modal_tops_path, method: :post, form: { data: { turbo: true } }, class: 'delete' %>
-    </header>
-    <section class="modal-card-body">
-      モーダルの中身
-    </section>
-    <footer class="modal-card-foot">
-      <%= button_to 'Save changes', close_modal_tops_path, method: :post, form: { data: { turbo: true } }, class: 'button is-success' %>
-      <%= button_to 'Cancel', close_modal_tops_path, method: :post, form: { data: { turbo: true } }, class: 'button' %>
-    </footer>
+<div data-controller="modal">
+  <div id="button" class="column is-flex is-justify-content-center">
+    <button class="button is-primary" data-action="click->modal#open">爬虫類</button>
+  </div>
+
+  <!-- is-active クラスを削除 -->
+  <div class="modal" data-modal-target="container">
+    <div class="modal-background" data-action="click->modal#close"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">モーダルタイトル</p>
+        <button class="delete" aria-label="close" data-action="click->modal#close"></button>
+      </header>
+      <section class="modal-card-body">
+        モーダルの内容
+      </section>
+      <footer class="modal-card-foot">
+        <button class="button is-success" data-action="click->modal#close">閉じる</button>
+      </footer>
+    </div>
   </div>
 </div>
