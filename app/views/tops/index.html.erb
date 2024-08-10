@@ -1,39 +1,36 @@
-<div class="bg">
-<div class="columns is-centered">
-  <div class="column is-half">
-  
-    <div class="column is-flex is-justify-content-center">
-      <%= button_to '押すと、ここから下が消えます', show_button_tops_path, method: :post, remote: true, class: 'button is-primary' %>
+<div data-controller="layouts" data-layouts-target="bg" class="bg">
+  <div class="columns is-centered">
+    <div class="column is-half">
+      <div class="column is-flex is-justify-content-center">
+        <%= button_to '押すと、ここから下が消えます', show_button_tops_path, method: :post, remote: true, class: 'button is-primary' %>
+      </div>
+      <span class="title">
+        <span>テスト</span>
+        <span>テスト</span>
+      </span>
+
+      <h1 class="title has-text-centered">表示が出来ない？？</h1>
+      <div id="tops">
+        <div id="show">
+          <%= render partial: "tops/my_name", locals: { current_text: @current_text } %>
+        </div>
+      </div>
+
+      <div id="button" class="column is-flex is-justify-content-center">
+        <%= button_to '次の文字を表示', my_show_tops_path, method: :post, remote: true, data: { turbo_frame: '_top' }, id: 'my_show_button', class: 'button is-link' %>
+      </div>
+
+      <div id='modal-container'></div>
+      <div id='message'></div>
+
+      <div class="column is-flex is-justify-content-center">
+        <%= form_with url: tops_path, data: { turbo: true } do |f| %>
+          <%= f.submit '送信', class: 'button is-success' %>
+        <% end %>
+      </div>
+      <div class="column is-flex is-justify-content-center">
+        <%= link_to 'ルートに戻る', root_path, class: 'button is-info' %>
+      </div>
     </div>
-    <span class="title">
-      <span>テスト</span>
-      <span>テスト</span>
-    </span>
-
-
-
-    <h1 class="title has-text-centered">表示が出来ない？？</h1>
-    <div id="tops">
-     <div id="show">
-      <%= render partial: "tops/my_name", locals: { current_text: @current_text } %>
-    </div>
-    </div>
-
-    <div id="button" class="column is-flex is-justify-content-center">
-      <%= button_to '次の文字を表示', my_show_tops_path, method: :post, remote: true, data: { turbo_frame: '_top' }, id: 'my_show_button', class: 'button is-link' %>
-    </div>
-
-    <div id='modal-container'></div>
-    <div id='message'></div>
-
-    <div class="column is-flex is-justify-content-center">
-      <%= form_with url: tops_path, data: { turbo: true } do |f| %>
-        <%= f.submit '送信', class: 'button is-success' %>
-      <% end %>
-    </div>
-    <div class="column is-flex is-justify-content-center">
-    <%= link_to 'ルートに戻る', root_path, class: 'button is-info' %>
   </div>
-  
-</div>
 </div>
