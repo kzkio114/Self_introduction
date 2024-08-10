@@ -4,8 +4,11 @@
 
 import { application } from "./application"
 
-import LayoutsController from "./layouts_controller"
-application.register("layouts", LayoutsController)
+import AnimeController from "./anime_controller"
+application.register("anime", AnimeController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import LayoutsController from "./layouts_controller"
+application.register("layouts", LayoutsController)
