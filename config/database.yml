@@ -15,7 +15,8 @@ test:
   database: myapp_test
 
 production:
-  adapter: mysql2
-  encoding: utf8
-  pool: 5
-  url: <%= ENV['DATABASE_URL'] %>
+  <<: *default
+  database: myapp_production
+  username: myapp
+  password: <%= ENV["MYAPP_DATABASE_PASSWORD"] %>
+  url: <%= ENV['CLEARDB_DATABASE_URL']&.sub(/\Amysql/, 'mysql2') %>
