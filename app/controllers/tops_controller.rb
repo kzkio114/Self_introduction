@@ -1,46 +1,22 @@
 class TopsController < ApplicationController
   def index
-    @current_text = session[:current_text] || ""
-    @full_text = "これは一文字ずつ表示されるテキストです。"
+    @profiles = Profile.all
+    @questions = Question.all # データベースからすべての質問を取得
   end
 
-  def show_button
-    respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.replace('show', partial: 'tops/show_button') }
-    end
-  end
+  def show_question
+    @question = Question.find_by(category: params[:category])
 
-  def create
-    respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: [
-          turbo_stream.append('modal-container', partial: 'tops/modal'),
-          turbo_stream.update('message', partial: 'tops/message', locals: { message: "フォームが送信されました！" })
-        ]
+    if params[:response].present?
+      @answer = params[:response] == "はい" ? @question.answer_text : "残念です！！また今度見てね"
+
+      respond_to do |format|
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("question-frame-#{@question.id}", partial: 'tops/show_question_response', locals: { question: @question, answer: @answer }) }
       end
-    end
-  end
-
-  def close_modal
-    respond_to do |format|
-      format.turbo_stream { render 'tops/close_modal' }
-    end
-  end
-
-  def my_show
-    session[:current_text] ||= ""
-    full_text = "これは一文字ずつ表示されるテキストです。"
-  
-    if session[:current_text].length < full_text.length
-      session[:current_text] += full_text[session[:current_text].length]
     else
-      session.delete(:current_text)
-    end
-  
-    respond_to do |format|
-      format.turbo_stream {
-        render turbo_stream: turbo_stream.replace("tops", partial: "tops/my_name", locals: { current_text: session[:current_text] })
-      }
+      respond_to do |format|
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("first-question-frame-#{@question.id}", partial: 'tops/show_question', locals: { question: @question }) }
+      end
     end
   end
 end

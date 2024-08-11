@@ -15,3 +15,6 @@ application.register("layouts", LayoutsController)
 
 import ModalController from "./modal_controller"
 application.register("modal", ModalController)
+
+import QuestionsController from "./questions_controller"
+application.register("questions", QuestionsController)

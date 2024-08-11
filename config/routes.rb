@@ -1,17 +1,7 @@
 Rails.application.routes.draw do
  root "tops#index"
-  get 'tops/show', as: 'tops_show'
- 
- post 'tops/my_show', as: 'tops_my_show'
- get 'tops/my_show', as: 'tops_my_get'
+ post "/questions/:category", to: "tops#show_question", as: :show_question
 
- resources :tops, only: [:index, :create] do
-  collection do
-    post :close_modal
-    post :my_show
-    post :show_button
-  end
-end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

@@ -1,23 +1,32 @@
-/* 黒いブロックのスタイル */
+.anime-overlay {
+  position: relative;
+  width: 100%;
+  height: 30px;
+}
+
 .block {
-  width: 0; /* 初期状態は幅0 */
+  width: 0;
   height: 50px;
   background-color: black;
   position: absolute;
-  top: 50%; /* 垂直方向に中央に配置 */
-  left: 0; /* 左端に配置 */
-  transform: translateY(-50%) translateX(0); /* 縦方向と水平方向の位置を調整 */
-  transition: width 0.5s ease, transform 0.5s ease; /* 幅と位置のトランジションを設定 */
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%) translateX(0);
+  transition: width 0.5s ease, transform 0.5s ease;
 }
 
-/* .blockが可視状態になるときのスタイル */
+.highlighted-text {
+  position: relative;
+  font-size: 22px; /* テキストサイズを調整 */
+  color: rgb(11, 11, 11); /* テキスト色を設定 */
+}
+
 .block.-visible {
-  width: 200px; /* 幅を200pxに広げる */
-  transform: translateY(-50%) translateX(0); /* 初期位置を維持 */
+  width: 200px;
+  transform: translateY(-50%) translateX(0);
 }
 
-/* .blockが左から右に縮小する時のスタイル */
 .block.-shrink {
-  width: 0; /* 幅を0に縮める */
-  transform: translateY(-50%) translateX(200px); /* 右端に移動しながら縮小 */
+  width: 0;
+  transform: translateY(-50%) translateX(200px);
 }

@@ -1,0 +1,4 @@
+<!-- app/views/tops/_disable_button.html.erb -->
+<%= form_with url: show_question_path(question.category), method: :post, local: true do %>
+  <%= submit_tag question.category, class: "button is-link is-light mb-4 has-text-weight-bold", disabled: true, value: "済" %>
+<% end %>

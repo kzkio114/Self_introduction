@@ -1,25 +1,60 @@
-<div data-controller="layouts" data-layouts-target="bg" class="bg">
+<div data-controller="layouts" data-layouts-target="bg" class="section">
   <div class="columns is-centered">
     <div class="column is-half">
-      <div class="column is-flex is-justify-content-center">
-        <%= button_to '押すと、ここから下が消えます', show_button_tops_path, method: :post, remote: true, class: 'button is-primary' %>
-      </div>
-      <span class="title">
-        <span>ようこそ、自己紹介アプリに</span>
-        <span>kzkio(かずちゃん)</span>
-      </span>
 
-    <div data-controller="anime">
-      <div data-anime-target="animeBg" class="block">
-        <span data-anime-target="text" class="text"></span>
+      <!-- タイトル部分 -->
+      <div class="box has-text-centered">
+        <h1 class="title is-3">自己紹介アプリ見ていただきありがとうございます</h1>
+        <h2 class="subtitle is-5">簡単な、自己紹介アプリです。</h2>
       </div>
-    </div>
 
-      <div id="button" class="column is-flex is-justify-content-center">
-        <%= button_to '次の文字を表示', my_show_tops_path, method: :post, remote: true, data: { turbo_frame: '_top' }, id: 'my_show_button', class: 'button is-link' %>
+      <!-- プロファイル情報を表示する部分 -->
+      <div class="box">
+        <h1 class="title is-4">プロフィール</h1>
+        
+        <!-- 画像を横に並べる -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <%= image_tag "アストロ.webp", style: 'max-width: 48%; max-height: 100%;' %>
+          <%= image_tag "X.webp", style: 'max-width: 48%; max-height: 100%;' %>
+        </div>
+
+        <!-- プロファイル情報 -->
+        <% @profiles.each do |profile| %>
+          <div class="content">
+            <p class="is-size-5"><strong>名前:</strong> <%= profile.nickname %></p>
+            <p class="is-size-5"><strong>年齢:</strong> <%= profile.age %></p>
+            <p class="is-size-5"><strong>趣味:</strong> <%= profile.hobby %></p>
+            <p class="is-size-5"><strong>出身地:</strong> <%= profile.birthplace %></p>
+          </div>
+        <% end %>
       </div>
-      <%= render "modal" %>
+
+      <!-- 質問カテゴリを表示する部分 -->
+      <div data-controller="questions" class="box">
+        <h1 class="title is-4">かずちゃんを深掘りできます？見ますか？</h1>
+
+        <div class="buttons is-flex is-flex-direction-column">
+          <% @questions.each do |question| %>
+            <%= form_with url: show_question_path(question.category), method: :post, local: true do %>
+              <!-- すべてのカテゴリボタンを強調 -->
+              <%= submit_tag question.category, class: "button is-link is-light mb-4 has-text-weight-bold" %>
+            <% end %>
+
+            <!-- 各質問に対するTurbo Frame -->
+            <div class="box">
+              <h2 class="title is-5">選択された質問</h2>
+              <turbo-frame id="first-question-frame-<%= question.id %>">
+                <p>質問がここに表示されます。</p>
+              </turbo-frame>
+            </div>
+          <% end %>
+        </div>
       </div>
+
+
+
+      <!-- モーダルを表示する部分 --　>
+      <%= render "modal" %>-->
     </div>
   </div>
 </div>
