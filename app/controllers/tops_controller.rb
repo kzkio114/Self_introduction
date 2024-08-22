@@ -1,7 +1,8 @@
 class TopsController < ApplicationController
   def index
     @profiles = Profile.all
-    @questions = Question.all # データベースからすべての質問を取得
+    @questions = Question.all
+    @app_lists = AppList.all
   end
 
   def show_question

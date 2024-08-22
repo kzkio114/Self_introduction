@@ -1,8 +1,6 @@
-<!-- app/views/tops/_show_question.html.erb -->
 <% if question %>
   <h3 class="title is-4">質問: <%= question.question_text %></h3>
 
-  <!-- 各質問に対して一意のTurbo Frameを指定 -->
   <div class="buttons">
     <%= form_with url: show_question_path(question.category), method: :post, data: { turbo_frame: "question-frame-#{question.id}" }, local: true, class: "mb-2" do %>
       <%= hidden_field_tag :response, "はい" %>
@@ -20,7 +18,5 @@
   </div>
 <% end %>
 
-<!-- 各質問に対応するTurbo Frame -->
 <turbo-frame id="question-frame-<%= question.id %>" class="box mt-4">
-  <!-- 初期表示として、ここに何かを表示したい場合に記述します -->
 </turbo-frame>

@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_10_143821) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_22_104551) do
+  create_table "app_lists", charset: "utf8mb3", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "language", null: false
+    t.integer "days"
+    t.string "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "git_url"
+    t.string "app_url"
+    t.string "event_name"
+  end
+
   create_table "profiles", charset: "utf8mb3", force: :cascade do |t|
     t.string "nickname"
     t.integer "age"
@@ -18,6 +30,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_10_143821) do
     t.string "birthplace"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.text "experience"
+    t.string "previous_job"
+    t.string "current_job"
+    t.string "comment"
+    t.string "term"
   end
 
   create_table "questions", charset: "utf8mb3", force: :cascade do |t|

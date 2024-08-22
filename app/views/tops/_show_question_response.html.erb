@@ -1,10 +1,8 @@
-<!-- app/views/tops/_show_question_response.html.erb -->
 <div class="notification is-primary">
   <p><strong>答え:</strong> <%= simple_format(linkify(answer)) %></p>
 </div>
 
 <% if answer.include?("リコリス・リコイル") %>
-  <!-- アニメーションコントローラを使った部分 -->
   <div class="anime-overlay" data-controller="anime">
     <span class="highlighted-text" data-anime-target="text">錦木千束が好きです</span>
     <div data-anime-target="animeBg" class="block"></div>

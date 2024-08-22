@@ -71,4 +71,5 @@ group :test do
   gem "selenium-webdriver"
 end
 
+# MySQLの為のgem
 gem 'mysql2', '>= 0.4.4'

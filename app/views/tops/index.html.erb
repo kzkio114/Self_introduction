@@ -2,45 +2,84 @@
   <div class="columns is-centered">
     <div class="column is-half">
 
-      <!-- タイトル部分 -->
+      <!-- Self-Introduction Header -->
       <div class="box has-text-centered">
-        <h1 class="title is-3">自己紹介アプリ見ていただきありがとうございます</h1>
-        <h2 class="subtitle is-5">簡単な、自己紹介アプリです。</h2>
+        <h1 class="title is-3">自己紹介アプリ</h1>
+        <h2 class="subtitle is-5">自己紹介と作成アプリ一覧紹介</h2>
       </div>
 
-      <!-- プロファイル情報を表示する部分 -->
+      <!-- Profile Section -->
       <div class="box">
         <h1 class="title is-4">プロフィール</h1>
-        
-        <!-- 画像を横に並べる -->
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-          <%= image_tag "アストロ.webp", style: 'max-width: 48%; max-height: 100%;' %>
-          <%= image_tag "X.webp", style: 'max-width: 48%; max-height: 100%;' %>
+
+        <div class="columns is-mobile is-multiline">
+          <div class="column is-half">
+            <%= image_tag "アストロ.webp", style: 'width: 100%; height: auto;' %>
+          </div>
+          <div class="column is-half">
+            <%= image_tag "X.webp", style: 'width: 100%; height: auto;' %>
+          </div>
         </div>
 
-        <!-- プロファイル情報 -->
         <% @profiles.each do |profile| %>
           <div class="content">
-            <p class="is-size-5"><strong>名前:</strong> <%= profile.nickname %></p>
+            <p class="is-size-5"><strong>名前:</strong> <%= profile.name %></p>
+            <p class="is-size-5"><strong>ニックネーム:</strong> <%= profile.nickname %></p>
+            <p class="is-size-5"><strong>期:</strong> <%= profile.term %></p>
             <p class="is-size-5"><strong>年齢:</strong> <%= profile.age %></p>
             <p class="is-size-5"><strong>趣味:</strong> <%= profile.hobby %></p>
             <p class="is-size-5"><strong>出身地:</strong> <%= profile.birthplace %></p>
+            <p class="is-size-5"><strong>入学時のプログラム経験:</strong> <%= profile.experience %></p>
+            <p class="is-size-5"><strong>以前の仕事:</strong> <%= profile.previous_job %></p>
+            <p class="is-size-5"><strong>今の仕事:</strong> <%= profile.current_job %></p>
+            <p class="is-size-5"><strong>一言:</strong> <%= profile.comment %></p>
           </div>
         <% end %>
       </div>
 
-      <!-- 質問カテゴリを表示する部分 -->
+     <!-- App List Section -->
+      <div class="box">
+      <h1 class="title is-4">アプリ一覧</h1>
+
+      <% @app_lists.each do |app| %>
+      <div class="card mb-4 <%= app.name == 'RUNTECKER' ? 'has-border-warning' : 'default-card-color' %>">
+        <div class="card-content">
+          <p class="title is-size-5"><strong>アプリ名:</strong> <%= app.name %></p>
+
+          <% if app.event_name.present? %>
+            <p class="title is-size-5"><strong>イベント:</strong> <%= app.event_name %></p>
+          <% end %>
+
+          <p class="is-size-5"><strong>言語:</strong> <%= app.language %></p>
+          <p class="is-size-5"><strong>一言:</strong> <%= app.comment %></p>
+
+        <% if app.days.present? %>
+          <p class="is-size-5"><strong>日数:</strong> <%= app.days %></p>
+        <% end %>
+
+        <% if app.git_url.present? %>
+          <p class="is-size-5"><strong>GIT URL:</strong> <%= link_to app.git_url, app.git_url, target: "_blank" %></p>
+        <% end %>
+
+        <% if app.app_url.present? %>
+          <p class="is-size-5"><strong>アプリ URL:</strong> <%= link_to app.app_url, app.app_url, target: "_blank" %></p>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
+      <!-- Questions Section -->
       <div data-controller="questions" class="box">
         <h1 class="title is-4">かずちゃんを深掘りできます？見ますか？</h1>
 
         <div class="buttons is-flex is-flex-direction-column">
           <% @questions.each do |question| %>
             <%= form_with url: show_question_path(question.category), method: :post, local: true do %>
-              <!-- すべてのカテゴリボタンを強調 -->
               <%= submit_tag question.category, class: "button is-link is-light mb-4 has-text-weight-bold" %>
             <% end %>
 
-            <!-- 各質問に対するTurbo Frame -->
             <div class="box">
               <h2 class="title is-5">選択された質問</h2>
               <turbo-frame id="first-question-frame-<%= question.id %>">
@@ -50,6 +89,7 @@
           <% end %>
         </div>
       </div>
+
     </div>
   </div>
 </div>
