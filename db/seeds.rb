@@ -70,7 +70,7 @@ questions_and_answers = {
 }
 
 questions_and_answers.each do |category, qa|
-  Question.find_or_create_by!(
+  .find_or_create_by!(
     category: category,
     question_text: qa["question"],
     answer_text: qa["answer"]
