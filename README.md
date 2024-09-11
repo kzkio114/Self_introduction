@@ -1,6 +1,6 @@
 # 【作成アプリ紹介アプリ】
 
-[![Image from Gyazo](https://i.gyazo.com/9eb224ed18d5e08f547a20eae3c401f7.png)](https://gyazo.com/9eb224ed18d5e08f547a20eae3c401f7)
+![9eb224ed18d5e08f547a20eae3c401f7](https://github.com/user-attachments/assets/80a4ad92-7ce8-4fff-8497-0e38f23ba53f)
 
 ## 概要
 
